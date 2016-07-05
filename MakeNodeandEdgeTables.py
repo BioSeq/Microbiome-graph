@@ -69,7 +69,6 @@ def makeEdgeTable(dictOfSamplesTopGenus):
 	FromNode = []
 	ToNode = []
 	Weight = []
-	
 	for listOfSamples in dictOfSamplesTopGenus:
 		for listOfMostAbundantGenus in dictOfSamplesTopGenus[listOfSamples]:
 			for index in range(length(listOfMostAbundantGenus)):
@@ -78,12 +77,35 @@ def makeEdgeTable(dictOfSamplesTopGenus):
 				ToNode.append(str(listOfMostAbundantGenus[index][0]))
 				Weight.append(float(listOfMostAbundantGenus[index][1]) 
 	
-	with open('MicrobiomeEdges.csv', 'wb') as csvfile:
-		filewriter = csv.writer(csvfile, delimiter=' ', quotechar='|', quoting=csv.QUOTE_MINIMAL)
-		filewriter.writerow(FromNode)
-		filewriter.writerow(ToNode)
-		filewriter.writerow(Weight)
+	outputFile = open('MicrobiomeEdges.csv', 'w', newline= ' ')
+	filewriter = csv.writer(outputFile)
+	filewriter.writerow(FromNode)
+	filewriter.writerow(ToNode)
+	filewriter.writerow(Weight)
 	return true
+
+def makeNodeTable(dictOfSamplesTopGenus):
+	#make the node tables
+	NodeName = []
+	TypeName = []
+
+	#first looop through keys and get sample names
+	for listOfSamples in dictOfSamplesTopGenus:
+		NodeName.append(str(listOfSamples))
+		TypeName.append('Sample')
+
+	#now take the OTU's
+	for listOfSamples in dictOfSamplesTopGenus:
+		for listOfMostAbundantGenus in dictOfSamplesTopGenus[listOfSamples]:
+			for index in range(length(listOfMostAbundantGenus)):
+				NodeName.append(str(listOfMostAbundantGenus[index][0]))
+				TypeName.append('Genus') 
+	outputFile = open('MicrobiomeNodes.csv', 'w', newline= ' ')
+	filewriter = csv.writer(outputFile)
+	filewriter.writerow(NodeName)
+	filewriter.writerow(TypeName)
+	return true
+
 
 if __name__ == '__main__':
         main()
