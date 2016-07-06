@@ -13,8 +13,7 @@
 #...
 # (Note: This type of file is available from the BaseSpace 16S Metagenomics App.)
 #
-#Return pie chart images for each sample as png format
-# REQUIRES R SCRIPT printPieChart.r
+#Return edge and node tables for use 
 
 import subprocess as sp
 import csv
