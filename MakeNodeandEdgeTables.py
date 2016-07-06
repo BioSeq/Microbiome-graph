@@ -70,6 +70,8 @@ def makeEdgeTable(dictOfSamplesTopGenus):
 	outputFile = open('MicrobiomeEdges.csv', 'w')
 	filewriter = csv.writer(outputFile)
 	rowvector = []
+	header = ['From', 'To', 'Weight']
+	filewriter.writerow(header)
 	for key in dictOfSamplesTopGenus:
 		for listOfMostAbundantGenus in dictOfSamplesTopGenus[key]:
 				#make the vectors from Sample to Genus weighted by percent
@@ -81,6 +83,8 @@ def makeNodeTable(dictOfSamplesTopGenus):
 	outputFile = open('MicrobiomeNodes.csv', 'w')
 	filewriter = csv.writer(outputFile)
 	rowvector = []
+	header = ['Node', 'Type']
+	filewriter.writerow(header)
 
 	#first loop through keys and get sample names
 	for key in dictOfSamplesTopGenus:
