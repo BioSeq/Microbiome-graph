@@ -82,18 +82,18 @@ def makeNodeTable(dictOfSamplesTopGenus):
 	outputFile = open('MicrobiomeNodes.csv', 'w')
 	filewriter = csv.writer(outputFile)
 	rowvector = []
-	header = ['Node', 'Type']
+	header = ['Node', 'node.type', 'node.label']
 	filewriter.writerow(header)
 
 	#first loop through keys and get sample names
 	for key in dictOfSamplesTopGenus:
-		rowvector = [str(key), 'Sample']
+		rowvector = [str(key), 1, 'Sample']
 		filewriter.writerow(rowvector)
 
 	#now take the OTU's
 	for key in dictOfSamplesTopGenus:
 		for listOfMostAbundantGenus in dictOfSamplesTopGenus[key]:
-				rowvector = [str(listOfMostAbundantGenus[0]), 'Genus']
+				rowvector = [str(listOfMostAbundantGenus[0]), 2, 'Genus']
 				filewriter.writerow(rowvector)
 	
 
