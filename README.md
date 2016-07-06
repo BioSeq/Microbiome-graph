@@ -1,6 +1,7 @@
 #Microbiome-graph
 
 Produces a network of given microbiome data
+
 _These programs were written for the [BioSeq](http://ase.tufts.edu/chemistry/walt/sepa/index.html) program at Tufts University, as part of Hannah's summer research project on the microbiomes of various probiotics._
 
 ###Step 1: Node and edge table production in Python
