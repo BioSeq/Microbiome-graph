@@ -18,4 +18,5 @@ Iterating through this dictionary, two CSV files are written and exported: one f
 ###Step 2: Producing an aesthetically pleasing graph in R 
 
 Using the csv files produced in Python, and the iGraph package in R, a weighted graph is produced.
+
 _Requirements: installation of the igraph and extrafont packages_
