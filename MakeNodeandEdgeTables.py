@@ -27,7 +27,8 @@ def main():
 	listOfGenus = readDataOutput[1]
 	aggregateCounts = readDataOutput[2]
 	dictOfSamplesTopGenus = makeDictOfTopGenus(aggregateCounts, listOfSamples, listOfGenus)
-	isDone = makeEdgeTable(dictOfSamplesTopGenus)
+	EdgesDone = makeEdgeTable(dictOfSamplesTopGenus)
+	NodesDone = makeNodeTable(dictOfSamplesTopGenus)
 
 
 def readData(INPUT_FILENAME):
@@ -65,19 +66,20 @@ def makeDictOfTopGenus(aggregateCounts, listOfSamples, listOfGenus):
 	return dictOfSamplesTopGenus
 
 def makeEdgeTable(dictOfSamplesTopGenus):
-#makes the edge table: from Sample to Genus Weighted by percentage
+	#makes the edge table: from Sample to Genus Weighted by percentage
 	FromNode = []
 	ToNode = []
 	Weight = []
-	for listOfSamples in dictOfSamplesTopGenus:
-		for listOfMostAbundantGenus in dictOfSamplesTopGenus[listOfSamples]:
-			for index in range(length(listOfMostAbundantGenus)):
-				#make csv: from Sample to Genus weighted by percent
-				FromNode.append(str(listOfSamples))
-				ToNode.append(str(listOfMostAbundantGenus[index][0]))
-				Weight.append(float(listOfMostAbundantGenus[index][1]) 
+
+	for key in dictOfSamplesTopGenus:
+		for listOfMostAbundantGenus in dictOfSamplesTopGenus[key]:
+				#make the vectors from Sample to Genus weighted by percent
+				FromNode.append(str(key))
+				ToNode.append(str(listOfMostAbundantGenus[0]))
+				Weight.append(float(listOfMostAbundantGenus[1]))
 	
-	outputFile = open('MicrobiomeEdges.csv', 'w', newline= ' ')
+	#write the csv file
+	outputFile = open('MicrobiomeEdges.csv', 'w')
 	filewriter = csv.writer(outputFile)
 	filewriter.writerow(FromNode)
 	filewriter.writerow(ToNode)
@@ -89,17 +91,18 @@ def makeNodeTable(dictOfSamplesTopGenus):
 	NodeName = []
 	TypeName = []
 
-	#first looop through keys and get sample names
-	for listOfSamples in dictOfSamplesTopGenus:
-		NodeName.append(str(listOfSamples))
+	#first loop through keys and get sample names
+	for key in dictOfSamplesTopGenus:
+		NodeName.append(str(key))
 		TypeName.append('Sample')
 
 	#now take the OTU's
-	for listOfSamples in dictOfSamplesTopGenus:
-		for listOfMostAbundantGenus in dictOfSamplesTopGenus[listOfSamples]:
-			for index in range(length(listOfMostAbundantGenus)):
+	for key in dictOfSamplesTopGenus:
+		for listOfMostAbundantGenus in dictOfSamplesTopGenus[key]:
+			for index in range(len(listOfMostAbundantGenus)):
 				NodeName.append(str(listOfMostAbundantGenus[index][0]))
 				TypeName.append('Genus') 
+	#write the CSV file
 	outputFile = open('MicrobiomeNodes.csv', 'w', newline= ' ')
 	filewriter = csv.writer(outputFile)
 	filewriter.writerow(NodeName)
