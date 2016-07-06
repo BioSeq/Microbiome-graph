@@ -26,11 +26,14 @@ pdf(file = "microbiomenetwork.pdf",width = 20, height = 20, onefile= TRUE)
 #plotting
 net <- graph_from_data_frame(d=links, vertices = nodes, directed=T)
 class(net)
-colors <- c("lightskyblue", "hotpink1")
-V(net)$color <- "lightskyblue"
-V(net)$size <- 15
-V(net)$label.cex <- 0.75
+colrs <- c("lightskyblue", "hotpink1")
+V(net)$color <- colrs[V(net)$node.type]
+V(net)$size <- 14
+V(net)$label.cex <- 0.8
 E(net)$width <- E(net)$Weight/6
 E(net)$arrow.mode <- 0
+
 plot(net,vertex.label.color = "black", vertex.label.family = "Arial Unicode MS", layout = layout_nicely)
+legend(x=1.5, y=1.1, c("Sample", "Genus"), pch=21,
+       col="#777777", pt.bg=colrs, pt.cex=2, cex=.8, bty="n", ncol=1)
 dev.off()
