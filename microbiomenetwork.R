@@ -21,15 +21,16 @@ nrow(links); nrow(unique(links[,c("From", "To")]))
 nodes <- unique(nodes)
 
 #make pdf
-pdf(file = "microbiomenetwork.pdf",width = 8.5, height = 11, onefile= TRUE)
+pdf(file = "microbiomenetwork.pdf",width = 20, height = 20, onefile= TRUE)
 
 #plotting
 net <- graph_from_data_frame(d=links, vertices = nodes, directed=T)
 class(net)
 colors <- c("lightskyblue", "hotpink1")
-V(net)$color <- colors[V(net)$Type]
-V(net)$size <- 20
+V(net)$color <- "lightskyblue"
+V(net)$size <- 15
 V(net)$label.cex <- 0.75
+E(net)$width <- E(net)$Weight/6
 E(net)$arrow.mode <- 0
-plot(net, vertex.color = "cadetblue1",vertex.label.color = "black", vertex.label.family = "Arial Unicode MS", layout = layout_nicely)
+plot(net,vertex.label.color = "black", vertex.label.family = "Arial Unicode MS", layout = layout_nicely)
 dev.off()
