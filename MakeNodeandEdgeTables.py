@@ -27,8 +27,8 @@ def main():
 	listOfGenus = readDataOutput[1]
 	aggregateCounts = readDataOutput[2]
 	dictOfSamplesTopGenus = makeDictOfTopGenus(aggregateCounts, listOfSamples, listOfGenus)
-	EdgesDone = makeEdgeTable(dictOfSamplesTopGenus)
-	NodesDone = makeNodeTable(dictOfSamplesTopGenus)
+	makeEdgeTable(dictOfSamplesTopGenus)
+	makeNodeTable(dictOfSamplesTopGenus)
 
 
 def readData(INPUT_FILENAME):
@@ -84,7 +84,6 @@ def makeEdgeTable(dictOfSamplesTopGenus):
 	filewriter.writerow(FromNode)
 	filewriter.writerow(ToNode)
 	filewriter.writerow(Weight)
-	return true
 
 def makeNodeTable(dictOfSamplesTopGenus):
 	#make the node tables
@@ -99,15 +98,13 @@ def makeNodeTable(dictOfSamplesTopGenus):
 	#now take the OTU's
 	for key in dictOfSamplesTopGenus:
 		for listOfMostAbundantGenus in dictOfSamplesTopGenus[key]:
-			for index in range(len(listOfMostAbundantGenus)):
-				NodeName.append(str(listOfMostAbundantGenus[index][0]))
+				NodeName.append(str(listOfMostAbundantGenus[0]))
 				TypeName.append('Genus') 
 	#write the CSV file
-	outputFile = open('MicrobiomeNodes.csv', 'w', newline= ' ')
+	outputFile = open('MicrobiomeNodes.csv', 'w')
 	filewriter = csv.writer(outputFile)
 	filewriter.writerow(NodeName)
 	filewriter.writerow(TypeName)
-	return true
 
 
 if __name__ == '__main__':
