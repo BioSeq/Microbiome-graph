@@ -21,4 +21,4 @@ Iterating through this dictionary, two CSV files are written and exported: one f
 
 Using the csv files produced in Python, and the iGraph package in R, a weighted graph is produced.
 
-_Requirements: installation of the igraph and extrafont packages_
+_Requirements: installation of the [igraph](http://igraph.org/r/) and [extrafont](https://github.com/wch/extrafont) packages_
