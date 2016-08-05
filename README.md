@@ -22,3 +22,6 @@ Iterating through this dictionary, two CSV files are written and exported: one f
 Using the csv files produced in Python, and the iGraph package in R, a pdf of a weighted graph is produced. Colors are used to differentiate between a genus and a sample. Formatting may be required to adjust to the number of samples.
 
 _Requirements: installation of the [igraph](http://igraph.org/r/) and [extrafont](https://github.com/wch/extrafont) packages_
+
+### Future steps:
+Currently working with the [Gephi](https://gephi.org/) interface in order to have a "dynamic" representation of data. With the official microbiome run data, the scripts above were very successful!
